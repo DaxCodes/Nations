@@ -1,6 +1,8 @@
 // under here is just a bunch of balony
 // this is very messy code lol
 
+// v1
+
 
 //LocalChecker
 function localChecker(localstorage, value){
