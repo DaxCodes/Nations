@@ -24,6 +24,11 @@ localChecker('flag', 0)
 localChecker('acres', 0)
 localChecker('adjective', )
 localChecker('populationDelay', 2000)
+localChecker('wealthDelay', 1000)
+
+//perks localstorage
+localChecker('oneAcrePerk', 0)
+localChecker('1kPopulationPerk', 0)
 
 // Getting Info From LocalStorage
 var countryNameLocal = localStorage.getItem('name');
@@ -36,11 +41,16 @@ var countryMascotLocal = localStorage.getItem('mascot');
 var countryMottoLocal = localStorage.getItem('motto');
 var countryWealthLocal = localStorage.getItem('wealth');
 var countryAcresLocal = localStorage.getItem('acres');
-// var
+var countryPopulationDelayLocal = localStorage.getItem('populationDelay')
+var countryWealthDelayLocal = localStorage.getItem('wealthDelay');
+
+// variables \\
 var population = parseInt(countryPopulationLocal);
 var wealth = parseInt(countryWealthLocal);
-console.log(typeof(wealth)) // testing so i can get int to make sure lol
+console.log(typeof(wealth))
 var acres = parseInt(countryAcresLocal);
+var populationDelay = parseInt(countryPopulationDelayLocal);
+var wealthDelay = parseInt(countryWealthDelayLocal);
 
 // WW500 simulator beta XD \\
 
@@ -55,13 +65,13 @@ var acrestxt = $('#land')
 populationtxt.text('Population: ' + population)
 wealthtxt.text('Wealth: ' + wealth)
 acrestxt.text('Acres of land: ' + acres)
- 
+
 // acres
 var acreCost = 100;
 var totalAcreCost;
 var totalPopulationGain;
-var totalAcres
-var acrePopulation = 10;
+var totalAcres;
+var acrePopulation = 50;
 
 if(countryPopulationLocal > 1000){
   sizeVar = 'small';
@@ -90,6 +100,11 @@ $('#claimbuttonno').click(function(){
 
 //WORK ON CLAIMBUTTONYES!!!!
 
+
+//perk variables
+var oneAcrePerk = parseInt(localStorage.getItem('oneAcrePerk'));
+var Perk1k = parseInt(localStorage.getItem('1kPopulationPerk'));
+
 $('#claimbuttonyes').click(function(){
   if($('#claimlandacres').val() != ''){
     //console.log(totalAcreCost)
@@ -100,10 +115,22 @@ $('#claimbuttonyes').click(function(){
       console.log('wealth ' + wealth)
       population += totalPopulationGain;
       acres += totalAcres
+      
       wealthtxt.text('Wealth: ' + wealth);
       localStorage.setItem('wealth', wealth)
+      
       populationtxt.text('Population: ' + population)
       localStorage.setItem('population', population)
+
+      acrestxt.text('Acres of land: ' + acres);
+      localStorage.setItem('acres', acres)
+
+      if(oneAcrePerk == 0){
+        localStorage.setItem('oneAcrePerk', 1);
+        oneAcrePerk = 1;
+        oneAcrePerkFunc()
+        alert('You now gain 1 population every 2 seconds, and 1 Wealth per second!')
+      }
     } else{
       alert('Not Enough Wealth!')
       /*
@@ -118,10 +145,57 @@ $('#claimbuttonyes').click(function(){
   
 })
 
+// gainer functions
+
+function oneAcrePerkFunc(){
+  setInterval(function(){
+    population += 1;
+    localStorage.setItem('population', population)
+    populationtxt.text('Population: ' + population);
+    if(population >= 1000 && Perk1k == 0){
+      localStorage.setItem('1kPopulationPerk', 1)
+      Perk1k = 1;
+      alert('You now earn 1 population every second, and 1 wealth every .5 seconds!')
+      localStorage.setItem('populationDelay', 1000)
+      localStorage.setItem('wealthDelay', 500)
+      populationDelay = 1000;
+      wealthDelay = 500;
+      location.reload()
+    }
+  }, populationDelay)
+  setInterval(function(){
+    wealth += 1;
+    localStorage.setItem('wealth', wealth)
+    wealthtxt.text('Wealth: ' + wealth);
+  }, wealthDelay)
+}
+if(oneAcrePerk == 1){
+  setInterval(function(){
+    population += 1;
+    localStorage.setItem('population', population)
+    populationtxt.text('Population: ' + population);
+    if(population >= 1000 && Perk1k == 0){
+      localStorage.setItem('1kPopulationPerk', 1)
+      Perk1k = 1;
+      alert('You now earn 1 population every second, and 1 wealth every .5 seconds!')
+      localStorage.setItem('populationDelay', 1000)
+      localStorage.setItem('wealthDelay', 500)
+      populationDelay = 1000;
+      wealthDelay = 500;
+      location.reload()
+    }
+  }, populationDelay)
+  setInterval(function(){
+    wealth += 1;
+    localStorage.setItem('wealth', wealth)
+    wealthtxt.text('Wealth: ' + wealth);
+  }, wealthDelay)
+}
+
 $('#claimlandacres').change(function(){
   totalAcreCost = (parseInt($('#claimlandacres').val()) * parseInt(acreCost));
   totalPopulationGain = (parseInt($('#claimlandacres').val()) * parseInt(acrePopulation));
-  totalAcres = parseInt($('#claimlandacres'));
+  totalAcres = parseInt($('#claimlandacres').val());
   console.log(totalAcreCost)
   $('#claimingLoseMoney').css('color', 'red')
   $('#claimingLoseMoney').text('-' + acreCost * $('#claimlandacres').val() + ' Wealth')
@@ -130,4 +204,3 @@ $('#claimlandacres').change(function(){
   $('#claimingEarnPpl').text('+' + acrePopulation * $('#claimlandacres').val() + ' Population')
 })
 
-$('#')

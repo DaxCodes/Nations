@@ -131,7 +131,6 @@ input{
   border: 2px solid #212121;
   transition: background .2s;
   margin: 0;
-  position: fixed;
 }
 .bbutton:hover{
   background: #242424;
@@ -141,7 +140,7 @@ input{
   background: #0f0f0f;
 }
 #buttons{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
 }
