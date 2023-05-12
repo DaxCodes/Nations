@@ -1,3 +1,7 @@
+// under here is just a bunch of balony
+// this is very messy code lol
+
+
 //LocalChecker
 function localChecker(localstorage, value){
   if(localStorage.getItem(localstorage) == undefined){
