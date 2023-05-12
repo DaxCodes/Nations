@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+#allInfo{
+  position:absolute;
+}
+#mainInfo{
+  background: #d1d1d1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 175px;
+  padding: 10px;
+  display: flex;
+  box-shadow: 0px 5px 2px 1px #878787;
+}
+#flag{
+  border: 3px solid black;
+  align-items: center;
+  display: flex;
+}
+#countryName{
+  align-items: left;
+  padding: 10px;
+  font-size: 50px;
+  margin: 0;
+  display: table-cell;
+  font-family: Georgia,Times,Times New Roman,serif; 
+}
+#countryMotto{
+  padding: 10px;
+  font-size: 25px;
+  color: #5c5c5c;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  font-family: Georgia,Times,Times New Roman,serif;
+  display: table-cell;
+  float: left;
+  align-self: flex-end;
+}
+#info{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 10px;
+  text-align: center;
+  font-size: 25px;
+}
+#biginfo{
+  text-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 10px;
+}
+#ClaimLand{
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform:translate(-50%, -50%);
+  text-align: center;
+  width: 400px;
+  height: 620px;
+  background: #c4c4c4;
+  border: 3px dotted black;
+  border-radius: 7px;
+  padding: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+input{
+  padding: 5px;
+  font-size: 15px;
+  width: 250px;
+  margin: 3px;
+  border-radius: 1px;
+  border: 0;
+  outline: 0;
+  font-family: 'Roboto', sans-serif;
+}
+#claimbuttonyes{
+  font-size: 25px;
+  padding: 5px;
+  border: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  background: green;
+  border-radius: 5px;
+  width: 250px;
+  transition: background .2s;
+}
+#claimbuttonyes:hover{
+  background: #004d00;
+  cursor: pointer;
+}
+#claimbuttonyes:active{
+  background: #002400;
+}
+#claimbuttonno{
+  font-size: 25px;
+  padding: 5px;
+  border: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  background: red;
+  border-radius: 5px;
+  width: 250px;
+  transition: background .2s;
+}
+#claimbuttonno:hover{
+  background: #a30000;
+  cursor: pointer;
+}
+#claimbuttonno:active{
+  background: #660000;
+}
+.bbutton{
+  font-size: 25px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: #363636;
+  padding: 10px;
+  color: white;
+  border: 2px solid #212121;
+  transition: background .2s;
+  margin: 0;
+}
+.bbutton:hover{
+  background: #242424;
+  cursor: pointer;
+}
+.bbutton:active{
+  background: #0f0f0f;
+}
+#buttons{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

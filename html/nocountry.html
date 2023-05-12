@@ -1,0 +1,169 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  body{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 3px;
+    background-image: url('/a.png');
+    background-size: cover;
+  }
+  input{
+    padding: 5px;
+    font-size: 15px;
+    width: 250px;
+    margin: 3px;
+    border-radius: 1px;
+    border: 0;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  button{
+    padding: 5px;
+    font-size: 25px;
+    width: 250px;
+    margin: 3px;
+    border-radius: 1px;
+    border: 0;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #97DF8C;
+    border-radius: 3px;
+    transition: background .3s, padding .3s;
+  }
+  button:hover{
+    padding: 7px;
+    background: #6C9F64;
+    cursor:pointer;
+  }
+  button:active{
+    padding: 9px;
+    background: #568050;
+  }
+  select{
+    padding: 5px;
+    font-size: 15px;
+    width: 250px;
+    margin: 3px;
+    font-family: 'Roboto', sans-serif;
+  }
+  #country{
+    background: #B0B0B0;
+    padding: 5px;
+    width: 350px;
+    border-radius: 5px;
+    border: 3px dotted #424242;
+  }
+</style>
+<body>
+  
+  <div id='country'>
+    <b><h1 style="font-family: 'Roboto', sans-serif; text-shadow: 2px 2px #848484;"">Create A Country</h1></b>
+    <br>
+    <input id='name' placeholder='Country Name'>
+    <br>
+    <br>
+    <select name="flag" id="flag">
+      <option value='none'>Select Flag:</option>
+      <option value='America'>America</option>
+      <option value='Brazil'>Brazil</option>
+      <option value='Germany'>Germany</option>
+      <option value='Peru'>Peru</option>
+      <option value='Japan'>Japan</option>
+      <option value='Canada'>Canada</option>
+      <option value='China'>China</option>
+      <option value='Ukraine'>Ukraine</option>
+      <option value='South Korea'>South Korea</option>
+      <option value='Russia'>Russia</option>
+      <option value='Custom'>CUSTOM</option>
+    </select>
+    <br><br>
+    <img src='/flags/usa.png' id='flagIMG' height='100px'>
+    <br>
+    <input id='customflag' style='opacity: 0; pointer-events: none' placeholder="Flag Image URL">
+    <br>
+    <br>
+    <input id='Motto' placeholder='Country Motto'>
+    <br>
+    <input id='Currency' placeholder="Type of Currency">
+    <br>
+    <input id='CurrencyUSD' placeholder="Currency Value in USD">
+    <br>
+    <input id='Mascot' placeholder='Country Mascot'>
+    <br><br>
+    <button id='create'>Create!</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+    var flag = 'none';
+    var flagimg = document.getElementById('flagIMG')
+    var customVar = false;
+    $(document).ready(function() {
+      $('#flag').change(function() {
+        if(this.value == 'Custom'){
+          $('#customflag').css('opacity', 1)
+          $('#customflag').css('pointer-events', 'all')
+          if(customVar == false){
+            flagimg.src = '/flags/customplaceholder.png'
+          }
+        } else{
+          $('#customflag').css('opacity', 0)
+          $('#customflag').css('pointer-events', 'none')
+          flagimg.src = '/flags/america.png'
+        }
+        if(this.value == 'none'){
+          flagimg.src = '/flags/noflagplaceholder.png'
+        }
+        if(this.value == 'America'){
+          flagimg.src = '/flags/usa.png'
+        }
+        if(this.value == 'Brazil'){
+          flagimg.src = '/flags/brazil.png'
+        }
+        if(this.value == 'Germany'){
+          flagimg.src = '/flags/germany.png'
+        }
+        if(this.value == 'Peru'){
+          flagimg.src = '/flags/peru.png'
+        }
+        if(this.value == 'Japan'){
+          flagimg.src = '/flags/japan.png'
+        }
+        if(this.value == 'Canada'){
+          flagimg.src = '/flags/canada.png'
+        }
+        if(this.value == 'China'){
+          flagimg.src = '/flags/china.png'
+        }
+        if(this.value == 'Ukraine'){
+          flagimg.src = '/flags/ukraine.png'
+        }
+        if(this.value == 'South Korea'){
+          flagimg.src = '/flags/southkorea.png'
+        }
+        if(this.value == 'Russia'){
+          flagimg.src = '/flags/russia.png'
+        }
+      });
+      $('#customflag').change(function(){
+        flagimg.src = this.value;
+      })
+      $('#create').click(function(){
+        if($('#name').value != '' && $('#flag').value != 'none' && $('#Motto').value != '' && $('#Currency').value != '' && $('#Mascot').value != ''){
+          localStorage.setItem('hasCountry', 1)
+          localStorage.setItem('name', $('#name').val())
+          localStorage.setItem('flag', $('#flagIMG').attr('src'))
+          localStorage.setItem('motto', $('#Motto').val())
+          localStorage.setItem('currency', $('#Currency').val())
+          localStorage.setItem('mascot', $('#Mascot').val())
+          localStorage.setItem('currencyUSD', $('#CurrencyUSD').val())
+          window.location.href = "/index.html";
+        }
+      })
+    });
+  </script>
+</body>

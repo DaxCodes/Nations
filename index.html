@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Nations</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id='allinfo'>
+    <div id='mainInfo'>
+      <img id='flag' src='flags/noflagplaceholder.png' height='150px'>
+      <div id='otherInfo'>
+        <h1 id='countryName'>Name</h1>
+        <i><h3 id='countryMotto'>Motto</h3></i>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div id='info'>
+      <h1 id='population'>Population: 0</h1>
+      <h1 id='wealth'>Wealth: 100</h1>
+      <h1 id='land'>Acres of land: 0</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3 id='biginfo'></h3>
+    <div id='buttons'>
+      <button class='bbutton' id='claimlandbtn'>Claim Land</button>
+    </div>
+  </div>
+
+  <div id='ClaimLand'>
+    <br>
+    <br>
+    <h1>Claim Land!</h1>
+    <br>
+    <br>
+    <h2>Type in the box below how many acres of land you want. It will also show how much wealth it will cost, and how much population you will gain from doing so.</h2>
+    <br>
+    <input id='claimlandacres' style='width: 350px;' placeholder="Amount of acres to claim.">
+    <br>
+    <br>
+    <h2 id='claimingLoseMoney'>-0 Wealth</h2>
+    <br>
+    <br>
+    <h2 id='claimingEarnPpl'>+0 Population</h2>
+    <br>
+    <br>
+    <button id='claimbuttonyes'>Claim!</button>
+    <br>
+    <br>
+    <button id='claimbuttonno'>Cancel</button>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
