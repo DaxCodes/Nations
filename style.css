@@ -131,6 +131,7 @@ input{
   border: 2px solid #212121;
   transition: background .2s;
   margin: 0;
+  position: fixed;
 }
 .bbutton:hover{
   background: #242424;

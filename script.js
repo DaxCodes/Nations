@@ -23,6 +23,7 @@ localChecker('mascot', 0)
 localChecker('flag', 0)
 localChecker('acres', 0)
 localChecker('adjective', )
+localChecker('populationDelay', 2000)
 
 // Getting Info From LocalStorage
 var countryNameLocal = localStorage.getItem('name');
@@ -58,7 +59,8 @@ acrestxt.text('Acres of land: ' + acres)
 // acres
 var acreCost = 100;
 var totalAcreCost;
-console.log(totalAcreCost)
+var totalPopulationGain;
+var totalAcres
 var acrePopulation = 10;
 
 if(countryPopulationLocal > 1000){
@@ -89,23 +91,37 @@ $('#claimbuttonno').click(function(){
 //WORK ON CLAIMBUTTONYES!!!!
 
 $('#claimbuttonyes').click(function(){
-  
-  console.log(totalAcreCost)
-  if(parseInt(wealth) >= totalAcreCost){
-    alert('works i guess');
-  } else{
-    alert('Not Enough Wealth!')
-    /*
-    $('#ClaimLand').css('opacity', 0);
-    $('#ClaimLand').css('pointer-events', 'none');
-    localStorage.setItem('wealth', 50)
-    wealthtxt.text('Wealth: ' + countryWealth)
-    localStorage.setItem('acres', localStorage.getItem('acres') + claimval)*/
+  if($('#claimlandacres').val() != ''){
+    //console.log(totalAcreCost)
+    if(parseInt(wealth) >= totalAcreCost){
+      $('#ClaimLand').css('opacity', 0);
+      $('#ClaimLand').css('pointer-events', 'none');
+      wealth -= totalAcreCost;
+      console.log('wealth ' + wealth)
+      population += totalPopulationGain;
+      acres += totalAcres
+      wealthtxt.text('Wealth: ' + wealth);
+      localStorage.setItem('wealth', wealth)
+      populationtxt.text('Population: ' + population)
+      localStorage.setItem('population', population)
+    } else{
+      alert('Not Enough Wealth!')
+      /*
+      
+      localStorage.setItem('wealth', 50)
+      wealthtxt.text('Wealth: ' + countryWealth)
+      localStorage.setItem('acres', localStorage.getItem('acres') + claimval)*/
+    }
+  } else {
+    alert('Please enter a valid Input!')
   }
+  
 })
 
 $('#claimlandacres').change(function(){
-  totalAcreCost = (parseInt($('#claimlandacres').val()) * parseInt(acreCost))
+  totalAcreCost = (parseInt($('#claimlandacres').val()) * parseInt(acreCost));
+  totalPopulationGain = (parseInt($('#claimlandacres').val()) * parseInt(acrePopulation));
+  totalAcres = parseInt($('#claimlandacres'));
   console.log(totalAcreCost)
   $('#claimingLoseMoney').css('color', 'red')
   $('#claimingLoseMoney').text('-' + acreCost * $('#claimlandacres').val() + ' Wealth')
@@ -113,3 +129,5 @@ $('#claimlandacres').change(function(){
   $('#claimingEarnPpl').css('color', 'green')
   $('#claimingEarnPpl').text('+' + acrePopulation * $('#claimlandacres').val() + ' Population')
 })
+
+$('#')
