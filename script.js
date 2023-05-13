@@ -31,6 +31,10 @@ localChecker('acres', 0)
 localChecker('adjective', )
 localChecker('populationDelay', 2000)
 localChecker('wealthDelay', 1000)
+localChecker('smallCountryAlert', 0)
+localChecker('mediumCountryAlert', 0)
+localChecker('largeCountryAlert', 0)
+localChecker('hugeCountryAlert', 0)
 
 //perks localstorage
 localChecker('oneAcrePerk', 0)
@@ -81,6 +85,30 @@ var acrePopulation = 50;
 
 if(countryPopulationLocal > 1000){
   sizeVar = 'small';
+  if(localStorage.getItem('smallCountryAlert') == 0){
+    localStorage.setItem('smallCountryAlert', 1)
+    alert('You are now considered a small sized country! (previous rank: tiny)');
+  }
+}
+if(countryPopulationLocal > 10000){
+  sizeVar = 'medium'
+  if(localStorage.getItem('mediumCountryAlert') == 0){
+    localStorage.setItem('mediumCountryAlert', 1)
+    alert('You are now considered a medium sized country! (previous rank: small)');
+  }
+}
+if(countryPopulationLocal > 100000){
+  sizeVar = 'large'
+  if(localStorage.getItem('largeCountryAlert') == 0){
+    localStorage.setItem('largeCountryAlert', 1)
+    alert('You are now considered a large sized country! (previous rank: medium)');
+  }
+}
+if(countryPopulationLocal > 1500000){
+  sizeVar = 'HUGE'
+  if(localStorage.getItem('hugeCountryAlert') == 0){
+    localStorage.setItem('hugeCountryAlert', 1)
+    alert('You are now considered a HUGE sized country! (previous rank: large)');
 }
 
 $('#flag').attr('src', localStorage.getItem('flag'));
