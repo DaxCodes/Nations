@@ -1,0 +1,62 @@
+<style>
+  body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+  }
+  #regioninput{
+    text-align: center;
+  }
+  input{
+    width: 350px;
+    padding: 5px;
+    font-family: sans-serif;
+    font-size: 25px;
+    outline: none;
+  }
+  #submit{
+    padding: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+    background: #7ECB8E;
+    margin: 3px;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 400px;
+  }
+  #submit:hover{
+    background: #65A372;
+    cursor: pointer;
+  }
+  #submit:active{
+    background: #4B7854;
+  }
+</style>
+<head>
+  <link rel="shortcut icon" href="/logo.png" type="image/png">
+  <title>Nations: Region Select</title>
+</head>
+<body>
+  <br>
+  <br>
+  <img src='/world-map.png' height='600px'/>
+  <h2>This map will help you decide what region you want to be in. But, you can also create your own region as well!</h2>
+  <br>
+  <br>
+  <div id='regioninput'>
+    <input id='choseRegion' placeholder='Region Name Here!'autocomplete="off">
+  </div>
+  <br>
+  <button id='submit'>Submit!</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+    $('#submit').click(function(){
+      if($('#choseRegion').val() == ''){
+        alert('Please choose a valid Region and not just nothing!')
+      } else{
+        localStorage.setItem('region', $('#choseRegion').val());
+        window.location.href = '/index.html';
+      }
+    })
+  </script>
+</body>

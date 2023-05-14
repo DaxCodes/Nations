@@ -11,6 +11,15 @@ function localChecker(localstorage, value){
   }
 }
 
+
+//insta-alert
+function coolalert(title, desc){
+  $('#alert').css('opacity', 1);
+  $('#alert').css('pointer-events', 'all');
+  $('#alerttitle').text(title)
+  $('#alertdesc').text(desc)
+}
+
 // hasCountry Localstorage
 localChecker('hasCountry', 0)
 
@@ -35,6 +44,7 @@ localChecker('smallCountryAlert', 0)
 localChecker('mediumCountryAlert', 0)
 localChecker('largeCountryAlert', 0)
 localChecker('hugeCountryAlert', 0)
+localChecker('region', 0)
 
 //perks localstorage
 localChecker('oneAcrePerk', 0)
@@ -64,6 +74,11 @@ var wealthDelay = parseInt(countryWealthDelayLocal);
 
 // WW500 simulator beta XD \\
 
+if(localStorage.getItem('region') != '0'){
+  $('#regionbtn').remove();
+  $('#regionlool').text('Region: ' + localStorage.getItem('region') + ' ')
+}
+
 // claimvalue
 var claimval = parseInt($('#claimlandacres').val())
 console.log(typeof(claimval))
@@ -87,28 +102,29 @@ if(countryPopulationLocal > 1000){
   sizeVar = 'small';
   if(localStorage.getItem('smallCountryAlert') == 0){
     localStorage.setItem('smallCountryAlert', 1)
-    alert('You are now considered a small sized country! (previous rank: tiny)');
+    coolalert('Bigger Country!','You are now considered a small sized country! (previous rank: tiny)');
   }
 }
 if(countryPopulationLocal > 10000){
   sizeVar = 'medium'
   if(localStorage.getItem('mediumCountryAlert') == 0){
     localStorage.setItem('mediumCountryAlert', 1)
-    alert('You are now considered a medium sized country! (previous rank: small)');
+    coolalert('Bigger Country!','You are now considered a medium sized country! (previous rank: small)');
   }
 }
 if(countryPopulationLocal > 100000){
   sizeVar = 'large'
   if(localStorage.getItem('largeCountryAlert') == 0){
     localStorage.setItem('largeCountryAlert', 1)
-    alert('You are now considered a large sized country! (previous rank: medium)');
+    coolalert('Bigger Country!','You are now considered a large sized country! (previous rank: medium)');
   }
 }
 if(countryPopulationLocal > 1500000){
   sizeVar = 'HUGE'
   if(localStorage.getItem('hugeCountryAlert') == 0){
     localStorage.setItem('hugeCountryAlert', 1)
-    alert('You are now considered a HUGE sized country! (previous rank: large)');
+    coolalert('Bigger Country!','You are now considered a HUGE sized country! (previous rank: large)');
+  }
 }
 
 $('#flag').attr('src', localStorage.getItem('flag'));
@@ -158,12 +174,11 @@ $('#claimbuttonyes').click(function(){
 
       acrestxt.text('Acres of land: ' + acres);
       localStorage.setItem('acres', acres)
-
       if(oneAcrePerk == 0){
         localStorage.setItem('oneAcrePerk', 1);
         oneAcrePerk = 1;
         oneAcrePerkFunc()
-        alert('You now gain 1 population every 2 seconds, and 1 Wealth per second!')
+        coolalert('You gained a Perk!','You now gain 1 population every 2 seconds, and 1 Wealth per second!')
       }
     } else{
       alert('Not Enough Wealth!')
@@ -186,10 +201,38 @@ function oneAcrePerkFunc(){
     population += 1;
     localStorage.setItem('population', population)
     populationtxt.text('Population: ' + population);
+    if(countryPopulationLocal > 1000){
+      sizeVar = 'small';
+      if(localStorage.getItem('smallCountryAlert') == 0){
+        localStorage.setItem('smallCountryAlert', 1)
+        coolalert('Bigger Country!','You are now considered a small sized country! (previous rank: tiny)');
+      }
+    }
+    if(countryPopulationLocal > 10000){
+      sizeVar = 'medium'
+      if(localStorage.getItem('mediumCountryAlert') == 0){
+        localStorage.setItem('mediumCountryAlert', 1)
+        coolalert('Bigger Country!','You are now considered a medium sized country! (previous rank: small)');
+      }
+    }
+    if(countryPopulationLocal > 100000){
+      sizeVar = 'large'
+      if(localStorage.getItem('largeCountryAlert') == 0){
+        localStorage.setItem('largeCountryAlert', 1)
+        coolalert('Bigger Country!','You are now considered a large sized country! (previous rank: medium)');
+      }
+    }
+    if(countryPopulationLocal > 1500000){
+      sizeVar = 'HUGE'
+      if(localStorage.getItem('hugeCountryAlert') == 0){
+        localStorage.setItem('hugeCountryAlert', 1)
+        coolalert('Bigger Country!','You are now considered a HUGE sized country! (previous rank: large)');
+      }
+    }
     if(population >= 1000 && Perk1k == 0){
       localStorage.setItem('1kPopulationPerk', 1)
       Perk1k = 1;
-      alert('You now earn 1 population every second, and 1 wealth every .5 seconds!')
+      coolalert('You gained a Perk!','You now earn 1 population every second, and 1 wealth every .5 seconds!')
       localStorage.setItem('populationDelay', 1000)
       localStorage.setItem('wealthDelay', 500)
       populationDelay = 1000;
@@ -211,7 +254,7 @@ if(oneAcrePerk == 1){
     if(population >= 1000 && Perk1k == 0){
       localStorage.setItem('1kPopulationPerk', 1)
       Perk1k = 1;
-      alert('You now earn 1 population every second, and 1 wealth every .5 seconds!')
+      coolalert('You gained a Perk!','You now earn 1 population every second, and 1 wealth every .5 seconds!')
       localStorage.setItem('populationDelay', 1000)
       localStorage.setItem('wealthDelay', 500)
       populationDelay = 1000;
@@ -236,5 +279,14 @@ $('#claimlandacres').change(function(){
 
   $('#claimingEarnPpl').css('color', 'green')
   $('#claimingEarnPpl').text('+' + acrePopulation * $('#claimlandacres').val() + ' Population')
+})
+
+$('#regionbtn').click(function(){
+  window.location.href = "html/regionselect.html";
+})
+
+$('#alertokay').click(function(){
+  $('#alert').css('opacity',0)
+  $('#alert').css('pointer-events','none')
 })
 

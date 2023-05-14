@@ -26,6 +26,10 @@
       <h1 id='wealth'>Wealth: 100</h1>
       <h1 id='land'>Acres of land: 0</h1>
     </div>
+    <div id='regions'>
+      <span id='regionlool'>Region: <b><i>None</i></b> <button id='regionbtn'>Select a region!</button></span>
+    </div>
+    <br>
     <br>
     <br>
     <br>
@@ -43,7 +47,7 @@
     <br>
     <h2>Type in the box below how many acres of land you want. It will also show how much wealth it will cost, and how much population you will gain from doing so.</h2>
     <br>
-    <input id='claimlandacres' style='width: 350px;' placeholder="Amount of acres to claim.">
+    <input id='claimlandacres' autocomplete="off" style='width: 350px;' placeholder="Amount of acres to claim.">
     <br>
     <br>
     <h2 id='claimingLoseMoney'>-0 Wealth</h2>
@@ -57,7 +61,17 @@
     <br>
     <button id='claimbuttonno'>Cancel</button>
   </div>
-  
+  <div id='alert'>
+    <br>
+    <br>
+    <br>
+    <h1 id='alerttitle'>Placeholder Title</h1>
+    <br>
+    <br>
+    <br>
+    <h3 id='alertdesc'>Placeholder Desc</h3>
+    <button id='alertokay'>Okay!</button>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>

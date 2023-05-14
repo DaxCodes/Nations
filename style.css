@@ -54,8 +54,29 @@ html {
   text-align: center;
   font-size: 25px;
 }
+#regionbtn{
+  font-size: 15px;
+  background: #25c125;
+  color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 3px;
+  border: 0;
+  padding: 7px;
+  text-align: center;
+}
+#regionbtn:hover{
+  background: #1c8d1c;
+  cursor: pointer;
+}
+#regionbtn:active{
+  background: #135313;
+}
+#regions{
+  text-align: center;
+  font-size: 25px;
+}
 #biginfo{
-  text-size: 20px;
+  font-size: 20px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   margin: 10px;
 }
@@ -143,4 +164,45 @@ input{
   position: fixed;
   bottom: 0;
   left: 0;
+}
+#alert{
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  background: #a1a1a1;
+  border-radius: 5px;
+  border: 3px solid dimgrey;
+  height: 550px;
+  width: 350px;
+  font-family: sans-serif;
+  color: black;
+  font-size: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+#alertokay{
+  background: #5fb461;
+  color: white;
+  font-size: 25px;
+  width: 200px;
+  padding: 6px;
+  bottom: 0;
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #367d36;
+  border-radius: 5px;
+  transition: background .2s;
+}
+#alertokay:hover{
+  background: #468147;
+  cursor: pointer;
+}
+#alertokay:active{
+  background: #2a502b;
 }

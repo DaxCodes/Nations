@@ -59,6 +59,10 @@
     border: 3px dotted #424242;
   }
 </style>
+<head>
+  <link rel="shortcut icon" href="/logo.png" type="image/png">
+  <title>Nations: Create Country</title>
+</head>
 <body>
   
   <div id='country'>
@@ -99,6 +103,9 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script>
+    if(localStorage.getItem('hasCountry') == 1){
+      window.location.href = "/index.html";
+    }
     var flag = 'none';
     var flagimg = document.getElementById('flagIMG')
     var customVar = false;
