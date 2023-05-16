@@ -1,7 +1,7 @@
 // under here is just a bunch of balony
 // this is very messy code lol
 
-// v1
+// v2
 
 
 //LocalChecker
@@ -63,6 +63,7 @@ var countryWealthLocal = localStorage.getItem('wealth');
 var countryAcresLocal = localStorage.getItem('acres');
 var countryPopulationDelayLocal = localStorage.getItem('populationDelay')
 var countryWealthDelayLocal = localStorage.getItem('wealthDelay');
+var countryRegionLocal = localStorage.getItem('region')
 
 // variables \\
 var population = parseInt(countryPopulationLocal);
@@ -136,7 +137,7 @@ $('#wealth').text("Wealth: " + localStorage.getItem('wealth'));
 $('#land').text("Acres of land: " + localStorage.getItem('acres'));
 
 // Big text
-$('#biginfo').text("The Country of " + countryNameLocal + " is a " + sizeVar + " country that uses " + countryCurrencyLocal + ' as their currency. 1 ' + countryCurrencyLocal + ' is equivalent to ' + countryCurrencyUSDLocal + ' USD dollars. The famous mascot for ' + countryNameLocal + ' is a ' + countryMascotLocal + '. There are currently ' + countryPopulationLocal + ' ' + countryNameLocal + "ians inside the country. " + countryNameLocal + "'s famous motto is " + '"' + countryMottoLocal + '".')
+$('#biginfo').text("The Country of " + countryNameLocal + " is a " + sizeVar + " country that uses " + countryCurrencyLocal + ' as their currency. 1 ' + countryCurrencyLocal + ' is equivalent to ' + countryCurrencyUSDLocal + ' USD dollars. The famous mascot for ' + countryNameLocal + ' is a ' + countryMascotLocal + '. There are currently ' + countryPopulationLocal + ' ' + countryNameLocal + "ians inside the country. " + countryNameLocal + "'s famous motto is " + '"' + countryMottoLocal + '". This nation is located in the region '+ countryRegionLocal + '. They also own about ' + countryAcresLocal + ' acres of land in their region.')
 
 //claim land
 $('#claimlandbtn').click(function(){
