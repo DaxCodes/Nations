@@ -45,6 +45,8 @@ localChecker('mediumCountryAlert', 0)
 localChecker('largeCountryAlert', 0)
 localChecker('hugeCountryAlert', 0)
 localChecker('region', 0)
+localChecker('militaryRestore', 0)
+localChecker('militarypower', 0)
 
 //perks localstorage
 localChecker('oneAcrePerk', 0)
@@ -63,7 +65,8 @@ var countryWealthLocal = localStorage.getItem('wealth');
 var countryAcresLocal = localStorage.getItem('acres');
 var countryPopulationDelayLocal = localStorage.getItem('populationDelay')
 var countryWealthDelayLocal = localStorage.getItem('wealthDelay');
-var countryRegionLocal = localStorage.getItem('region')
+var countryRegionLocal = localStorage.getItem('region');
+var countryMilitaryPowerLocal = localStorage.getItem('militarypower');
 
 // variables \\
 var population = parseInt(countryPopulationLocal);
@@ -72,6 +75,7 @@ console.log(typeof(wealth))
 var acres = parseInt(countryAcresLocal);
 var populationDelay = parseInt(countryPopulationDelayLocal);
 var wealthDelay = parseInt(countryWealthDelayLocal);
+var militaryPower = parseInt(countryMilitaryPowerLocal);
 
 // WW500 simulator beta XD \\
 
@@ -86,11 +90,13 @@ console.log(typeof(claimval))
 //text
 var populationtxt = $('#population');
 var wealthtxt = $('#wealth');
-var acrestxt = $('#land')
+var acrestxt = $('#land');
+var militarypowertxt = $('#militarypower');
 
 populationtxt.text('Population: ' + population)
 wealthtxt.text('Wealth: ' + wealth)
 acrestxt.text('Acres of land: ' + acres)
+militarypowertxt.text('Military Power: ' + militaryPower)
 
 // acres
 var acreCost = 100;
@@ -110,7 +116,8 @@ if(countryPopulationLocal > 10000){
   sizeVar = 'medium'
   if(localStorage.getItem('mediumCountryAlert') == 0){
     localStorage.setItem('mediumCountryAlert', 1)
-    coolalert('Bigger Country!','You are now considered a medium sized country! (previous rank: small)');
+    coolalert('Bigger Country & Military Power!','You are now considered a medium sized country! (previous rank: small), and you also earn 1 Military Power per minute!');
+    militaryPowerPerMinute();
   }
 }
 if(countryPopulationLocal > 100000){
@@ -157,7 +164,7 @@ var oneAcrePerk = parseInt(localStorage.getItem('oneAcrePerk'));
 var Perk1k = parseInt(localStorage.getItem('1kPopulationPerk'));
 
 $('#claimbuttonyes').click(function(){
-  if($('#claimlandacres').val() != ''){
+  if($('#claimlandacres').val() != '' && Math.sign($('#claimlandacres').val() != '-1')){
     //console.log(totalAcreCost)
     if(parseInt(wealth) >= totalAcreCost){
       $('#ClaimLand').css('opacity', 0);
@@ -166,6 +173,9 @@ $('#claimbuttonyes').click(function(){
       console.log('wealth ' + wealth)
       population += totalPopulationGain;
       acres += totalAcres
+
+      militaryPower += totalAcres
+      militarypowertxt.text('Military Power: ' + militaryPower)
       
       wealthtxt.text('Wealth: ' + wealth);
       localStorage.setItem('wealth', wealth)
@@ -213,7 +223,8 @@ function oneAcrePerkFunc(){
       sizeVar = 'medium'
       if(localStorage.getItem('mediumCountryAlert') == 0){
         localStorage.setItem('mediumCountryAlert', 1)
-        coolalert('Bigger Country!','You are now considered a medium sized country! (previous rank: small)');
+        coolalert('Bigger Country & Military Power!','You are now considered a medium sized country! (previous rank: small), and now you earn 1 Military Power per minute!');
+        militaryPowerPerMinute()
       }
     }
     if(countryPopulationLocal > 100000){
@@ -291,3 +302,28 @@ $('#alertokay').click(function(){
   $('#alert').css('pointer-events','none')
 })
 
+$('#resetbtn').click(function(){
+  if(confirm('Are you sure you want to reset? (Y/N)')){
+    localStorage.setItem('hasCountry', 0);
+    location.reload()
+  } else {
+    alert('Reset cancelled!')
+  }
+})
+
+if(localStorage.getItem('militaryRestore') == 0){
+  localStorage.setItem('militaryRestore', 1)
+  coolalert('Military Power!', "You've gained military power depending on how many acres of land you own!")
+  militaryPower = acres
+  localStorage.setItem('militarypower', militaryPower)
+  militarypowertxt.text('Military Power: ' + militaryPower)
+}
+function militaryPowerPerMinute(){
+  if(population >= 10000){
+      setInterval(function(){
+        militaryPower += 1;
+        localStorage.setItem('militarypower', militaryPower);
+        militarypowertxt.text('Military Power: ' + militaryPower);
+    }, 60000)
+  }
+}
